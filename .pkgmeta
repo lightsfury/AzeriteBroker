@@ -28,7 +28,6 @@ externals:
 		url: https://repos.wowace.com/wow/libdatabroker-1-1
 
 ignore:
-	- Libs
 	- LocaleWatcher.lua
 	- LocaleBuilder.lua
 	- LocaleWatcher.txt
