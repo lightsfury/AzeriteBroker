@@ -112,12 +112,24 @@ addon.Options = {
 					set = function(info, r, g, b, a)
 						local t = db.DataStream.Color;
 						t.r, t.g, t.b, t.a = r, g, b, a;
+						addon:UpdateText();
 					end,
                 },
             },
         },
     },
 };
+
+function Fix_v1_1_0_db_upgrade()
+	
+	if type(db.DataStream.Color) == "number" then
+		db.DataStream.Color = {
+			r = defaults.profile.DataStream.Color.r,
+			g = defaults.profile.DataStream.Color.g,
+			b = defaults.profile.DataStream.Color.b
+		};
+	end
+end
 
 function addon:OnInitialize()
     self.Vars = LibStub("AceDB-3.0"):New("AzeriteBrokerDB", defaults);
@@ -127,6 +139,8 @@ function addon:OnInitialize()
     self.Vars.RegisterCallback(self, "OnProfileReset", "UpdateDB");
     
     db = self.Vars.profile;
+	
+	Fix_v1_1_0_db_upgrade()
     
     LibStub("LibDataBroker-1.1"):NewDataObject("AzeriteBroker", self.LDBObject);
 end
@@ -189,7 +203,9 @@ function addon:UpdateText()
 		
 		local color = db.DataStream.Color;
 		
-		text = string.format("|cff%02x%02x%02x%s|r", color.r * 255, color.g * 255, color.b * 255, text);
+		local colorCode = string.format("ff%02x%02x%02x", color.r * 255, color.g * 255, color.b * 255);
+		
+		text = string.format("|c%s%s|r", colorCode, text);
 	end
 	
 	self.LDBObject.text = text;
