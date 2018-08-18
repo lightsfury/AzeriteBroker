@@ -105,6 +105,14 @@ addon.Options = {
                     name = L["Text color"],
                     desc = L["Color used for the LibDataBroker text"],
                     hasAlpha = false,
+					get = function(info)
+						local t = db.DataStream.Color;
+						return t.r, t.g, t.b, (t.a or 1.0);
+					end,
+					set = function(info, r, g, b, a)
+						local t = db.DataStream.Color;
+						t.r, t.g, t.b, t.a = r, g, b, a;
+					end,
                 },
             },
         },
