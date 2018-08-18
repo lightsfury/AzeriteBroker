@@ -174,6 +174,8 @@ function addon:UpdateText()
 		local currentXp, nextLevelXp = C_AzeriteItem.GetAzeriteItemXPInfo(azeriteItemLocation);
 		local remainingXp = nextLevelXp - currentXp;
 		local percent = currentXp / nextLevelXp;
+		percent = 100 * percent;
+		percent = string.format("%0.2f%%", percent);
 		
 		text = self:Format(str, level, currentXp, nextLevelXp, remainingXp, percent);
 		
