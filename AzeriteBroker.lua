@@ -178,7 +178,8 @@ function addon:UpdateText()
 	local str = "{2}/{3}";
 	
     if db.DataStream.Show.Level then
-        str = L["Level"] .. " {1}," .. str;
+		str = L["Level {1}:"];
+        --str = L["Level"] .. " {1}," .. str;
     end
 	
     if db.DataStream.Show.Remaining then

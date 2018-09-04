@@ -5,6 +5,7 @@ local T = LibStub("AceLocale-3.0");
 local L = T:NewLocale("AzeriteBroker", "enUS", true, true);
 
 L["Level"] = true;
+L["Level {1}:"] = true;
 L["Loading..."] = true;
 
 L = T:NewLocale("AzeriteBroker", "deDE");
